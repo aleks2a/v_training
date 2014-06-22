@@ -1,0 +1,63 @@
+require 'selenium-webdriver'
+require 'json'
+require 'rspec'
+require 'net/ssh'
+require 'net/http'
+
+
+SERVER_LABELS = {:production => "usps.com",
+                 :qa1 => "integration.usps.com",
+                 :qa2 => "trunk.usps.com"
+}
+
+def get_env
+  env = (ENV['ENVIRONMENT'] || :production).to_sym
+  SERVER_LABELS[env]
+end
+
+
+
+class WebHelper
+
+  def initialize
+    $browser = Selenium::WebDriver.for :firefox
+    $browser.manage.timeouts.implicit_wait = 5
+  end
+
+  def usps
+     USPS.new $browser
+  end
+
+end
+
+
+World { WebHelper.new } if !ENV['NOT_UI']
+
+
+
+def take_screenshot file_name
+  $browser.save_screenshot "features/screenshots/#{file_name}"
+end
+
+# if scenario failed, create unique file_name and attach screenshot to report.html file
+After do |scenario|
+  if scenario.failed?
+    file_name = Time.now.to_s + ".png"
+    take_screenshot file_name
+    embed("features/screenshots/#{file_name}", 'image/png')
+  end
+end
+
+#another cucumber hook that enable you to perform final cleanup
+# after all scenarios have executed
+at_exit do
+  $browser.quit if $browser !=nil
+end
+
+
+
+
+
+
+
+
