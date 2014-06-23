@@ -41,20 +41,13 @@ end
 
 # if scenario failed, create unique file_name and attach screenshot to report.html file
 After do |scenario|
-  if scenario.failed?
+  $browser.quit if $browser !=nil
+  if scenario.failed? && !ENV['NOT_UI']
     file_name = Time.now.to_s + ".png"
     take_screenshot file_name
     embed("features/screenshots/#{file_name}", 'image/png')
   end
 end
-
-#another cucumber hook that enable you to perform final cleanup
-# after all scenarios have executed
-at_exit do
-  $browser.quit if $browser !=nil
-end
-
-
 
 
 

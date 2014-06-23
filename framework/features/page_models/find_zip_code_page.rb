@@ -24,4 +24,36 @@ class FindZipCodePage < PageActions
     end
   end
 
+  def select_state state_name
+    select_state_dropdown.click
+    available_states_list.each do |element|
+      if element.text == state_name
+        element.find_element(:tag_name, "a").click
+        break
+      end
+    end
+  end
+
+  def street_address_field street_address_name
+    @browser.find_element(:name, "tAddress").send_keys street_address_name
+  end
+
+  # find element by xpath using parent element id
+  def suite_field suite
+    @browser.find_element(:xpath, "//div[@id='input-block']/div[2]/span/input").send_keys suite
+  end
+
+  #find by id
+  def city_field city
+    @browser.find_element(:id, "tCity").send_keys city
+  end
+
+  def find_button
+    @browser.find_element(:id, "lookupZipFindBtn").click
+  end
+
+  def zip_code
+    @browser.find_element(:css, "span.zip").text
+  end
+
 end

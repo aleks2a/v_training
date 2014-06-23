@@ -18,5 +18,8 @@ Then /^I print all Errors from log file$/ do
   else
     fail "system.log file not found in host #{@host}"
   end
+end
+
+Then /I close SSH connection/ do
   Net::SSH.close(@host)
 end
