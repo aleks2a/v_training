@@ -8,10 +8,10 @@ Feature: Find zip code by address
   Scenario Outline: Find zip Code for multiple cities
     Given I navigate to Find Zip Code page
     When I type "<street>" as street address
-    When I type "<city>" as city
-    When I will select "<state>" state
-    And click Find button
-    Then I should get my zip code "<zip_code>"
+    Then I type "<city>" as city
+    And I will select "<state>" state
+    Then click Find button
+    And I should get my zip code "<zip_code>"
   Examples:
     | street                | city         | state                     | zip_code |
     | 1044 Middlefield Road | Redwood City | CA - California           | 94063    |
