@@ -1,9 +1,10 @@
 source :rubygems
 
-require 'selenium-webdriver'
-require 'json'
-require 'rspec'
-require 'net/ssh'
-require 'net/http'
+gem 'selenium-webdriver'
+gem 'json'
+gem 'rspec'
+gem 'net/ssh'
+gem 'net/http'
+
 
 

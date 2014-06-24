@@ -21,5 +21,5 @@ Then /^I print all Errors from log file$/ do
 end
 
 Then /I close SSH connection/ do
-  Net::SSH.close(@host)
+  @ssh.close
 end

@@ -1,4 +1,5 @@
-#add default profile
-
+default: --tags @zip_code
 zip_code:  --format html --out report.html --format pretty --tags @zip_code
+ssh: --format html --out report.html --format pretty --tags @ssh
+
 
