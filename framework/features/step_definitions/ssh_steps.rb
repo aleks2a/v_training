@@ -23,3 +23,7 @@ end
 Then /I close SSH connection/ do
   @ssh.close
 end
+
+Given(/^I print all subjects$/) do
+  Subject.all_subject
+end

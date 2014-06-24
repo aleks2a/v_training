@@ -3,8 +3,10 @@ source :rubygems
 gem 'selenium-webdriver'
 gem 'json'
 gem 'rspec'
-gem 'net/ssh'
-gem 'net/http'
+gem 'net-ssh'
+gem 'mysql2'
+gem 'activerecord'
+gem 'cucumber'
 
 
 
