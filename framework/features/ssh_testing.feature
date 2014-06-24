@@ -1,3 +1,4 @@
+@ssh
 Feature: Test SSH access to remote host
 
   Scenario: SSH to remote machine and read logs

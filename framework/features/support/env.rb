@@ -15,6 +15,11 @@ def get_env
   SERVER_LABELS[env]
 end
 
+## ADD
+#def get_browser
+#
+#end
+
 
 
 class WebHelper
@@ -36,6 +41,7 @@ World { WebHelper.new } if !ENV['NOT_UI']
 
 
 def take_screenshot file_name
+  #UPDATE FOR WINDOWS
   $browser.save_screenshot "features/screenshots/#{file_name}"
 end
 
@@ -45,6 +51,7 @@ After do |scenario|
   if scenario.failed? && !ENV['NOT_UI']
     file_name = Time.now.to_s + ".png"
     take_screenshot file_name
+    #UPDATE FOR WINDOWS
     embed("features/screenshots/#{file_name}", 'image/png')
   end
 end

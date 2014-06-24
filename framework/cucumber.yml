@@ -1,2 +1,4 @@
+#add default profile
+
 zip_code:  --format html --out report.html --format pretty --tags @zip_code
 
