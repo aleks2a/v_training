@@ -1,12 +1,12 @@
 Feature: Learning API
 
   Scenario Outline: Parse response and show temperature
-    Given I do API request for city ID <city_id>
-    Given I parse API response
-    Then I print city name and humidity
+    Given I make an API request for city ID <city_id>
+    Then I parse API response
+    And I print "<city_name>" name and humidity
 
   Examples:
-  | city_id |
-  | 5391959 |
-  | 2643743 |
-  | 2988507 |
+  | city_id | city_name     |
+  | 5391959 | San Francisco |
+  | 2643743 | London        |
+  | 2988507 | Paris         |
