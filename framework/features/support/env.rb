@@ -15,17 +15,12 @@ def get_env
   SERVER_LABELS[env]
 end
 
-## ADD
-#def get_browser
-#
-#end
-
-
-
 class WebHelper
 
+  $browser_name = (ENV['BROWSER'] || :firefox).to_sym
+
   def initialize
-    $browser = Selenium::WebDriver.for :firefox
+    $browser = Selenium::WebDriver.for $browser_name
     $browser.manage.timeouts.implicit_wait = 5
   end
 

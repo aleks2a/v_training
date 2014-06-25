@@ -1,3 +1,4 @@
+@basic
 Feature: beginners scenarios
 
   Scenario: Open web browser with USPS website
