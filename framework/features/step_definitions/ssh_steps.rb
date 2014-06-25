@@ -26,5 +26,9 @@ end
 
 Then /^I print all subjects$/ do
    p Subject.all
-   $gateway.shutdown!
+end
+
+Then /^I confirm that "([^"]*)" is at (\d*)(?:st|nd|rd|th)? position$/ do |subject, position|
+  actual_position = Subject.where(:name => "#{subject}").first.position.to_s
+  actual_position.should == position
 end

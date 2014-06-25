@@ -51,6 +51,10 @@ After do |scenario|
   end
 end
 
+After('@action')do
+  $gateway.shutdown!
+end
+
 
 
 
