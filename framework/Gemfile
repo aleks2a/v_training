@@ -6,7 +6,11 @@ gem 'rspec'
 gem 'net-ssh'
 gem 'mysql2'
 gem 'activerecord'
+<<<<<<< Updated upstream
 gem 'cucumber'
 
+=======
+gem 'net-ssh-gateway'
+>>>>>>> Stashed changes
 
 
