@@ -1,3 +1,7 @@
-framework/.idea/
-framework/Gemfile.lock
-framework/report.html
+screenshots/
+junit_format/
+.idea/
+ruby/
+Gemfile.lock
+report.html
+.bundle/
