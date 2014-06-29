@@ -1,5 +1,5 @@
 Feature: Learning API
-
+  @api
   Scenario Outline: Parse response and show temperature
     Given I make an API request for city ID <city_id>
     Then I parse API response

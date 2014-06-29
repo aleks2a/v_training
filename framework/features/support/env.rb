@@ -3,6 +3,7 @@ require 'json'
 require 'rspec'
 require 'net/ssh'
 require 'net/http'
+require 'net/ssh/gateway'
 
 
 SERVER_LABELS = {:production => "usps.com",
@@ -51,7 +52,29 @@ After do |scenario|
   end
 end
 
-After('@action')do
+
+Before('@active')do
+  server_ip = (ENV['IP']).to_s
+
+  $gateway = Net::SSH::Gateway.new(
+      server_ip, 'bayqa', :password =>'password01'
+  )
+  puts "connection has been established!!!!" if $gateway.active?
+  port = $gateway.open('127.0.0.1', 3306, 3307)
+
+
+  ActiveRecord::Base.establish_connection(
+      :adapter => 'mysql2',
+      :host    => '127.0.0.1',
+      :username => 'igordor',
+      :password => 'password',
+      :database => 'simple_cms_development',
+      :socket => 'private/tmp/mysql.sock',
+      :port => port
+  )
+end
+
+After('@active')do
   $gateway.shutdown!
 end
 

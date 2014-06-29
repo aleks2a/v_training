@@ -1,4 +1,3 @@
-.idea/
-Gemfile.lock
-.idea/workspace.xml
-report.html
+framework/.idea/
+framework/Gemfile.lock
+framework/report.html
