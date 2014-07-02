@@ -24,6 +24,11 @@ Then /I close SSH connection/ do
   @ssh.close
 end
 
-Given(/^I print all subjects$/) do
-  Subject.all_subject
+Then /^I print all subjects$/ do
+   p Subject.all
+end
+
+Then /^I confirm that "([^"]*)" is at (\d*)(?:st|nd|rd|th)? position$/ do |subject, position|
+  actual_position = Subject.where(:name => "#{subject}").first.position.to_s
+  actual_position.should == position
 end

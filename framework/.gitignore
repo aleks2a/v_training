@@ -1,0 +1,7 @@
+.idea/
+screenshots/
+junit_format/
+ruby/
+Gemfile.lock
+report.html
+.bundle/

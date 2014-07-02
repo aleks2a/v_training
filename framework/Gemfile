@@ -7,7 +7,11 @@ gem 'net-ssh'
 gem 'mysql2'
 gem 'activerecord'
 gem 'cucumber'
+<<<<<<< HEAD
 gem 'debugger'
 
+=======
+gem 'net-ssh-gateway'
+>>>>>>> 635698f4eb0134e43208597a57fc90a2fd704a75
 
 

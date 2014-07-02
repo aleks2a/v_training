@@ -4,6 +4,8 @@ ssh: --format html --out report.html --format pretty --tags @ssh
 api: --format html --out report.html --format pretty --tags @api
 active: --format html --out report.html --format pretty --tags @active
 basic: --format junit --out junit_format --format html --out report.html --format pretty --tags @basic
+basic: --format html --out report.html --format pretty --tags @basic
+api: --format html --out report.html --format pretty --tags @api
 
 
 basic_and_active: --format html --out report.html --format pretty --tags @active --tags @basic
