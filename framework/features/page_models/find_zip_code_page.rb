@@ -12,7 +12,7 @@ class FindZipCodePage < PageActions
   # find all elements with tag "li" under parent element with css "ul.select-ul"
   # elements will be stored in array
   def available_states_list
-    @browser.find_element(:css, "ul.select-ul").find_elements(:tag_name, "li")
+    @browser.find_element(:css, "ul.select-ul").find_elements(:tag_name, "a")
   end
 
   # printing in terminal states in dropdown menu
@@ -28,7 +28,9 @@ class FindZipCodePage < PageActions
     select_state_dropdown.click
     available_states_list.each do |element|
       if element.text == state_name
-        element.find_element(:tag_name, "a").click
+        #element.find_element(:tag_name, "a").click
+        element.click
+
         break
       end
     end

@@ -1,9 +1,10 @@
 default: --tags @zip_code
 zip_code:  --format html --out report.html --format pretty --tags @zip_code
 ssh: --format html --out report.html --format pretty --tags @ssh
+api: --format html --out report.html --format pretty --tags @api
 active: --format html --out report.html --format pretty --tags @active
-basic: --format html --out report.html --format pretty --tags @basic
+basic: --format junit --out junit_format --format html --out report.html --format pretty --tags @basic
 
 
-
-
+basic_and_active: --format html --out report.html --format pretty --tags @active --tags @basic
+basic_or_active: --format html --out report.html --format pretty --tags @active,@basic

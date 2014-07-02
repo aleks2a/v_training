@@ -16,6 +16,8 @@ And /^I print "(.*)" name and humidity$/ do |city_name|
 end
 
 
-
-
-
+Then(/^I should get response with key and values$/) do |table|
+  table.raw.each do |key, value|
+    @result[key].should == value
+  end
+end

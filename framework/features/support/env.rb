@@ -3,6 +3,7 @@ require 'json'
 require 'rspec'
 require 'net/ssh'
 require 'net/http'
+require "debugger"
 
 
 SERVER_LABELS = {:production => "usps.com",
@@ -25,7 +26,7 @@ class WebHelper
   end
 
   def usps
-     USPS.new $browser
+     USPS.new
   end
 
 end
@@ -35,21 +36,18 @@ World { WebHelper.new } if !ENV['NOT_UI']
 
 
 
-def take_screenshot file_name
-  #UPDATE FOR WINDOWS
-  $browser.save_screenshot "features/screenshots/#{file_name}"
-end
 
 # if scenario failed, create unique file_name and attach screenshot to report.html file
 After do |scenario|
   $browser.quit if $browser !=nil
   if scenario.failed? && !ENV['NOT_UI']
-    file_name = Time.now.to_s + ".png"
-    take_screenshot file_name
-    #UPDATE FOR WINDOWS
-    embed("features/screenshots/#{file_name}", 'image/png')
+    FileUtils.mkdir_p("screenshots") if !File.directory? "screenshots"
+      file_name = Time.now.to_s + ".png"
+      $browser.save_screenshot "screenshots/#{file_name}"
+      embed("screenshots/#{file_name}", 'image/png')
   end
 end
+
 
 
 
