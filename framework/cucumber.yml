@@ -1,12 +1,14 @@
-default: --tags @zip_code
-zip_code:  --format html --out report.html --format pretty --tags @zip_code
-ssh: --format html --out report.html --format pretty --tags @ssh
-api: --format html --out report.html --format pretty --tags @api
-active: --format html --out report.html --format pretty --tags @active
-basic: --format junit --out junit_format --format html --out report.html --format pretty --tags @basic
-basic: --format html --out report.html --format pretty --tags @basic
-api: --format html --out report.html --format pretty --tags @api
+# cucumber will execute default profile if profile not defined in terminal
+default: --format junit --out junit_format --tags @zip_code
 
+zip_code: --format junit --out junit_format --format html --out report.html --format pretty --tags @zip_code
+ssh: --format junit --out junit_format --format html --out report.html --format pretty --tags @ssh
+api: --format junit --out junit_format --format html --out report.html --format pretty --tags @api
+active: --format junit --out junit_format --format html --out report.html --format pretty --tags @active
+basic: --format junit --out junit_format --format junit --out junit_format --format html --out report.html --format pretty --tags @basic
+api: --format junit --out junit_format --format html --out report.html --format pretty --tags @api
 
-basic_and_active: --format html --out report.html --format pretty --tags @active --tags @basic
-basic_or_active: --format html --out report.html --format pretty --tags @active,@basic
+#execute all scenarios marked with tag @active AND @basic (scenario SHOULD have both tags)
+basic_and_active: --format junit --out junit_format --format html --out report.html --format pretty --tags @active --tags @basic
+#execute all scenarios marked with tag @active OR @basic (scenario SHOULD have one of listed tags)
+basic_or_active: --format junit --out junit_format --format html --out report.html --format pretty --tags @active,@basic

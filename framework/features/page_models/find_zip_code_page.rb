@@ -1,15 +1,17 @@
+#class for Find Zip Code Page inherit common methods from PageActions class
 class FindZipCodePage < PageActions
 
+  # method used for constructing URL
   def path
     "https://tools.BASEURL/go/ZipLookupAction!input.action"
   end
 
-  # find element using css
+  # find element using css (css is mix of tag name + class name)
   def select_state_dropdown
     @browser.find_element(:css, "span.select-current-text")
   end
 
-  # find all elements with tag "li" under parent element with css "ul.select-ul"
+  # find all elements with tag "a" under parent element with css "ul.select-ul"
   # elements will be stored in array
   def available_states_list
     @browser.find_element(:css, "ul.select-ul").find_elements(:tag_name, "a")
@@ -45,7 +47,6 @@ class FindZipCodePage < PageActions
     @browser.find_element(:xpath, "//div[@id='input-block']/div[2]/span/input").send_keys suite
   end
 
-  #find by id
   def city_field city
     @browser.find_element(:id, "tCity").send_keys city
   end

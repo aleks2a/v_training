@@ -1,11 +1,13 @@
 Given /^I make an API request for city ID ([^"]*)$/ do |id|
+  # creating request API url
   request = "http://api.openweathermap.org/data/2.5/weather?id=#{id}"
+  # send request and store response in 'resp' variable
   resp = Net::HTTP.get_response(URI.parse(request))
   @data = resp.body
-
 end
 
 Then /^I parse API response$/ do
+  # parse response to hash and store in '@result'
   @result = JSON.parse(@data)
 end
 
