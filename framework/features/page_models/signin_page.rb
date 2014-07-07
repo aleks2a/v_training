@@ -8,14 +8,9 @@ class SignInPage < PageActions
     @browser.find_element(:id, "password")
   end
 
-  # reusing method "login_field"
   def send_login login
+    # reusing method login_field so we can use
     login_field.send_keys login
-  end
-
-  # reusing method "send_password"
-  def send_password password
-    password_field.send_keys password
   end
 
   def sign_in_button

@@ -43,15 +43,18 @@ World { WebHelper.new } if !ENV['NOT_UI']
 
 #After hook will execute code after each scenario
 After do |scenario|
-  if scenario.failed? && !ENV['NOT_UI']
   # if scenario failed, create unique file_name and attach screenshot to report.html file
+  if scenario.failed? && !ENV['NOT_UI']
+    # create folder 'screenshots' if folder not exists
     FileUtils.mkdir_p("screenshots") if !File.directory? "screenshots"
-      file_name = Time.now.strftime("%Y-%m-%d_at_%H.%M.%S").to_s + ".png"
-      $browser.save_screenshot "screenshots/#{file_name}"
-      #embed screenshot to report.html file
-      embed("screenshots/#{file_name}", 'image/png')
+    # create variable file_name using Time class (Ruby builtin) and construct name by YearMonthDay_at_Hour_Min_Sec.png
+    file_name = Time.now.strftime("%Y-%m-%d_at_%H.%M.%S").to_s + ".png"
+    # 'save_screenshot' SeleniumWebDriver method
+    $browser.save_screenshot "screenshots/#{file_name}"
+    # embed screenshot to report.html file
+    embed("screenshots/#{file_name}", 'image/png')
   end
-  #Selenium method 'quit' after each scenario
+  #Selenium method 'quit' after each scenario if $browser is not equal nil (will be nil for API, SSH, DB tests)
   $browser.quit if $browser !=nil
 end
 
