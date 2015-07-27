@@ -26,6 +26,6 @@ end
 
 Then (/^I should see "(.*?)" in login section$/) do |name|
   # assertion: text from login section should be equal 'name' (from feature file)
-  usps.home_page.register_signin.text.should == name
+  expect(usps.home_page.register_signin.text).to eq(name)
 end
 

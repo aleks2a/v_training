@@ -1,4 +1,5 @@
 require 'selenium-webdriver'
+require_relative 'page_actions'
 require 'json'
 require 'rspec'
 require 'net/ssh'
@@ -20,17 +21,17 @@ end
 
 class WebHelper
   # read system environment variable with name 'BROWSER' if variable not defined => assign value to :firefox
-  $browser_name = (ENV['BROWSER'] || :firefox).to_sym
+  @@browser_name = (ENV['BROWSER'] || :firefox).to_sym
 
   # initialize method automatically creating instance of SeleniumWebDriver
   def initialize
-    $browser = Selenium::WebDriver.for $browser_name
-    $browser.manage.timeouts.implicit_wait = 5
+    @browser = Selenium::WebDriver.for @@browser_name
+    @browser.manage.timeouts.implicit_wait = 5
   end
-
+ 
   # method will return instance of USPS class
   def usps
-     USPS.new
+     USPS.new @browser
   end
 
 end
@@ -50,12 +51,12 @@ After do |scenario|
     # create variable file_name using Time class (Ruby builtin) and construct name by YearMonthDay_at_Hour_Min_Sec.png
     file_name = Time.now.strftime("%Y-%m-%d_at_%H.%M.%S").to_s + ".png"
     # 'save_screenshot' SeleniumWebDriver method
-    $browser.save_screenshot "screenshots/#{file_name}"
+    @browser.save_screenshot "screenshots/#{file_name}"
     # embed screenshot to report.html file
     embed("screenshots/#{file_name}", 'image/png')
   end
   #Selenium method 'quit' after each scenario if $browser is not equal nil (will be nil for API, SSH, DB tests)
-  $browser.quit if $browser !=nil
+  @browser.quit if @browser !=nil
 end
 
 

@@ -1,15 +1,15 @@
-class USPS
+class USPS < PageActions
 
   def home_page
-    HomePage.new $browser
+    HomePage.new @browser
   end
 
   def signin_page
-    SignInPage.new $browser
+    SignInPage.new @browser
   end
 
   def find_zip_code_page
-    FindZipCodePage.new $browser
+    FindZipCodePage.new @browser
   end
 
 

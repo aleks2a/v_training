@@ -1,7 +1,9 @@
 class PageActions
+
+  attr_reader :browser
   # including RSpec matchers for assertions
   # in new versions 'selenium-webdriver' gem may be included by default
-  include RSpec::Matchers
+  # include RSpec::Matchers
 
   def initialize browser
     @browser = browser
